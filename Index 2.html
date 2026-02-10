@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi Valentín?</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #ffeef2;
+            text-align: center;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        img {
+            width: 250px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        h1 { color: #d63384; }
+
+        .buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        #siBtn {
+            background-color: #ff4d6d;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #888;
+            color: white;
+        }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainCard">
+        <img id="mainImg" src="https://image2url.com/r2/default/images/1770691928507-cea8cbed-bf6a-4521-909f-2521952a7ba4.jpeg"
+ alt="Perrito tierno">
+        <h1 id="pregunta">¿Quieres ser mi Valentín?</h1>
+        
+        <div class="buttons">
+            <button id="siBtn">SÍ</button>
+            <button id="noBtn">NO</button>
+        </div>
+    </div>
+
+    <div id="mensajeFinal" class="hidden">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIwd3p4OHB4eGZ4eGZ4eGZ4eGZ4eGZ4eGZ4eGZ4eGZ4eGZ4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/108m8j8j7j8j7j/giphy.gif" alt="Celebración">
+        <h1 style="color: #d63384;">¡SABÍA QUE DIRÍAS QUE SÍ! ❤️</h1>
+    </div>
+
+    <script>
+        const siBtn = document.getElementById('siBtn');
+        const noBtn = document.getElementById('noBtn');
+        const mainCard = document.getElementById('mainCard');
+        const mensajeFinal = document.getElementById('mensajeFinal');
+        
+        let escalaSi = 1;
+        let escalaNo = 1;
+
+        noBtn.addEventListener('click', () => {
+            // El "Sí" crece
+            escalaSi += 0.5;
+            siBtn.style.transform = `scale(${escalaSi})`;
+            
+            // El "No" se achica
+            escalaNo -= 0.1;
+            if (escalaNo < 0.3) escalaNo = 0.3; // Límite para que no desaparezca
+            noBtn.style.transform = `scale(${escalaNo})`;
+
+            // Mover el botón No para que sea más difícil (opcional)
+            const x = Math.random() * 50 - 25;
+            const y = Math.random() * 50 - 25;
+            noBtn.style.translate = `${x}px ${y}px`;
+        });
+
+        siBtn.addEventListener('click', () => {
+            mainCard.classList.add('hidden');
+            mensajeFinal.classList.remove('hidden');
+        });
+    </script>
+
+</body>
+</html>
